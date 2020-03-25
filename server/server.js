@@ -5,7 +5,7 @@ const mongoose = require("mongoose");
 
 const app = express()
 const bodyParser = require("body-parser");
-
+const path = require('path');
 
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: false }))
@@ -24,6 +24,9 @@ mongoose.connect(process.env.URLDB, { useNewUrlParser: true, useCreateIndex: tru
         console.log('BD online');
 
     });
+
+//Habilitar la carpeta public
+app.use(express.static(path.resolve(__dirname, '../public')));
 
 app.listen(process.env.PORT, () => {
     console.log("Escuchando en el puerto:", 3000);
